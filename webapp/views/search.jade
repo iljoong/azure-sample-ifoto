@@ -1,0 +1,118 @@
+extends layout
+
+block content
+
+    h2 #{title}
+
+    h3 search content
+
+    div(id="startModal" class="modal fade" role="dialog")
+        div(class="modal-dialog")
+            div(class="modal-content")
+                form(name="edit" action="/search/edit" method="post")
+                    div(class="modal-header")
+                        button(type="button" class="close" data-dismiss="modal") &times;
+                        h4(class="modal-title") Edit caption
+
+                    div(class="input-group")
+                        span(class="input-group-addon" id="basic-addon1") Caption
+                        input(type="text" class="form-control" placeholder="caption" name="fotocaption" id="fotocaption" )
+                        input(type="hidden" class="form-control" name="fotoid" id="fotoid" )
+
+                    div(class="modal-footer")
+                        button(class="btn btn-default" type="submit", id="edit") Okay
+                        button(type="button" class="btn btn-default" data-dismiss="modal") Cancel
+    
+    div(id="startModal2" class="modal fade" role="dialog")
+        div(class="modal-dialog")
+            div(class="modal-content")
+                form(name="edit" action="/search/delete" method="post")
+                    div(class="modal-header")
+                        button(type="button" class="close" data-dismiss="modal") &times;
+                        h4(class="modal-title") Delete
+
+                    div(class="input-group")
+                        input(type="hidden" class="form-control" name="deleteid" id="deleteid" )
+
+                    div(class="modal-footer")
+                        button(class="btn btn-default" type="submit", id="delete") Okay
+                        button(type="button" class="btn btn-default" data-dismiss="modal") Cancel
+  
+    div(class="row")
+        div(class="col-md-4")
+            form(name="image" action="/search" method="post")
+                div.input-group
+                    input.form-control(type="text" name="keyword" id="keyword" placeholder="keyword")
+                    span.input-group-btn
+                        button.btn.btn-default(type="submit", id="Image")
+                            span.glyphicon.glyphicon-search
+    br
+    div(class="row")
+        div.col-md-12
+            if (tags)
+                ul.nav.nav-pills(role="tablist")
+                    each tag in tags
+                        li.active(role="presentation")
+                            a(href="/search?keyword=#{tag.value}") #{tag.value}
+                                span.badge #{tag.count}
+
+    div(class="row")
+        div.col-md-4
+            h4 keyword: #{keyword}, Count: #{count}
+
+    div(class="row")
+        if (results)
+            each item in results
+                div.col-xs-6.col-md-3
+                    div(class="thumbnail")
+                        if !issecondary
+                            a(href="#{item.uri}")
+                                img(src="#{item.thumbnail}" alt="#{item.caption}")
+                            div(class="caption")
+                                p #{item.caption}
+                        else
+                            a(href="#{item.uri2}")
+                                img(src="#{item.thumbnail2}" alt="#{item.caption}")
+                            div(class="caption")
+                                p #{item.caption}
+
+                        if !readonly
+                            div.btn-group
+                                button.btn.btn-default.btn-xs.dropdown-toggle(type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
+                                    span.caret
+                                ul.dropdown-menu
+                                    li
+                                        a(href="#" data-toggle="modal" data-target="#startModal" onclick="javascript:$('#fotoid').val( '#{item.id}' ); javascript:$('#fotocaption').val( '#{item.caption}' )") edit
+                                    li
+                                        a(href="#" onclick="javascript:alert('NOT IMPLEMENTED');") delete
+                                        //a(href="#" data-toggle="modal" data-target="#startModal2" onclick="javascript:$('#deleteid').val( '#{item.id}' );") delete
+
+    div(class="text-center")
+        if (pagecount)
+            nav(aria-label="Page navigation" class="center")
+                ul(class="pagination")
+                    - var startp = page - 2 > 1 ? page - 2 : 1; 
+                    - var end_p = startp + 4
+                    - var n = startp - 1
+                    if (end_p > pagecount)
+                        - end_p = pagecount 
+                    if (startp > 1)
+                        - var prev = startp - 1
+                        li
+                            a(href="/search?keyword=#{keyword}&page=#{prev}") prev
+
+                    while n++ < end_p
+                        if (n == page)
+                            li(class="active")
+                                a(href="#") #{n}
+                        else
+                            li
+                                a(href="/search?keyword=#{keyword}&page=#{n}") #{n} 
+                                    
+                    if (end_p < pagecount)
+                        - var next = end_p + 1
+                        li
+                            a(href="/search?keyword=#{keyword}&page=#{next}") next
+            // | page #{startp}, #{end_p}, #{pagecount}
+                            
+

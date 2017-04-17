@@ -1,0 +1,40 @@
+{
+  "version": 2,
+  "targets": {
+    ".NETFramework,Version=v4.6": {
+      "ImageResizer/4.0.5": {
+        "type": "package",
+        "compile": {
+          "lib/net45/ImageResizer.dll": {}
+        },
+        "runtime": {
+          "lib/net45/ImageResizer.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "ImageResizer/4.0.5": {
+      "sha512": "BaNFH/1CUHOF39wO5O91sm3biH6mhbt2QoQnjSK2wNX1RP841gZTJOO3X7XQY25RlwjSIGSnzh1OUouow9uyjA==",
+      "type": "package",
+      "path": "imageresizer/4.0.5",
+      "files": [
+        "imageresizer.4.0.5.nupkg.sha512",
+        "imageresizer.nuspec",
+        "lib/net45/ImageResizer.XML",
+        "lib/net45/ImageResizer.dll"
+      ]
+    }
+  },
+  "projectFileDependencyGroups": {
+    "": [],
+    ".NETFramework,Version=v4.6": [
+      "ImageResizer >= 4.0.5"
+    ]
+  },
+  "tools": {},
+  "projectFileToolGroups": {},
+  "packageFolders": {
+    "C:\\Users\\iljoong\\.nuget\\packages": {}
+  }
+}

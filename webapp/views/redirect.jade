@@ -1,0 +1,14 @@
+extends layout
+
+block content
+    h2 loading...
+
+    div(style='position:absolute;z-index:5;top:45%;left:45%;')
+        img(src="/images/hourglass.gif" alt="loading..." style="width: 100px; height:100px")
+
+    script.
+        $(document).ready( function() {
+            self.location = '#{page}';
+        });
+
+        

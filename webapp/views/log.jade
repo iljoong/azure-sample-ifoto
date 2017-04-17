@@ -1,0 +1,15 @@
+extends layout
+
+block content
+    h2=title
+
+    table.table.table-striped
+        tr
+            th Timestamp
+            th Status
+            th Uri
+        each value in body
+            tr
+                td #{value.Timestamp}
+                td #{value.status}
+                td #{value.uri}

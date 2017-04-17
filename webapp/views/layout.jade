@@ -1,0 +1,47 @@
+doctype html
+html
+  head
+    title #{toptitle}
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
+    script(type='text/javascript' src='https://code.jquery.com/jquery-1.11.3.min.js')
+    script(type='text/javascript' src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js')
+
+  body
+
+    nav.navbar.navbar-inverse.navbar-fixed-top
+      div.container
+        div.navbar-header
+          button.navbar-toggle.collapsed(type="button" data-toggle="collapse", data-target="#navbar" aria-expanded="false" aria-controls="navbar")
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          div.navbar-brand #{toptitle}
+        div.navbar-collapse.collapse(id="navbar" aria-expanded="false")
+          ul.nav.navbar-nav
+            li.active(id='nav_home')
+              a(href='/') HOME
+            li(id='image')
+              a(href='/upload') Image Upload
+            li(id='imagesch')
+              a(href='/search') Image Search
+            li(id='log')
+              a(href='/log') Job Log
+
+    if readonly
+      div.alert.alert-danger(role="alert")
+        span.glyphicon.glyphicon-exclamation-sign(aria-hidden="true")
+        span.sr-only NOTE:
+        |  Warning: This site is temporarily read-only.
+
+    block content
+
+    nav.navbar.navbar-inverse.navbar-fixed-bottom
+      div.container
+        p.text-center
+          font(color="#FFFFFF") Powered by 
+            a(href="http://azure.com") Microsoft Azure
+
