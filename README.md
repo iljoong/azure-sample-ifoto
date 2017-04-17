@@ -2,10 +2,10 @@
 
 This sample app demonstrates how to implement BCDR on Azure with intelligent photo album application
 
-- Azure App Service: hosts node.js web application (this app)
+- Azure App Service: hosts node.js web application
 - Azure Blob: stores images in primary/secondary sites
 - Azure Cognitive API: gets images caption and tags
-- Azure Function: processes thumbnail, call cognitive api, etc
+- Azure Function: processes thumbnail, get image caption and tag and etc
 - Azure Search: searchs images by keyword. it provides paging and facet
 - Azure Traffic Manager: handles DR
 
